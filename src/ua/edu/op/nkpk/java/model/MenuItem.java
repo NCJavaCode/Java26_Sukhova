@@ -1,12 +1,25 @@
 package ua.edu.op.nkpk.java.model;
 
-//Клас описує позицію в меню кафе.
+/**
+ * Клас описує позицію в меню кафе.
+ *
+ * @author Viktoriia Sukhova
+ * @version 1.0
+ */
 public class MenuItem {
     private int id;
     private String name;
     private double price;
     private String category;
 
+    /**
+     * Конструктор для створення елемента меню.
+     *
+     * @param id ідентифікатор страви
+     * @param name назва страви
+     * @param price ціна страви
+     * @param category категорія (напої, десерти)
+     */
     public MenuItem(int id, String name, double price, String category) {
         this.id = id;
         this.name = name;
@@ -14,7 +27,11 @@ public class MenuItem {
         this.category = category;
     }
 
-    //Змінює ціну страви з перевіркою на валідність через if/else.
+    /**
+     * Змінює ціну страви з перевіркою на валідність через if/else.
+     *
+     * @param newPrice нова ціна страви
+     */
     public void updatePrice(double newPrice) {
         if (newPrice > 0) {
             this.price = newPrice;
@@ -24,17 +41,24 @@ public class MenuItem {
         }
     }
 
-
-    //Гетери та сетери.
+    // Гетери та сетери.
+    /** @return ідентифікатор страви */
     public int getId() { return id; }
+    /** @param id новий ідентифікатор */
     public void setId(int id) { this.id = id; }
 
+    /** @return назва страви */
     public String getName() { return name; }
+    /** @param name нова назва */
     public void setName(String name) { this.name = name; }
 
+    /** @return ціна страви */
     public double getPrice() { return price; }
+    /** @param price нова ціна */
     public void setPrice(double price) { this.price = price; }
 
+    /** @return категорія страви */
     public String getCategory() { return category; }
+    /** @param category нова категорія */
     public void setCategory(String category) { this.category = category; }
 }

@@ -4,15 +4,27 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-//Клас Order описує замовлення в кафе.
-
+/**
+ * Клас Order описує замовлення в кафе, що містить список позицій,
+ * інформацію про номер столика, статус та час створення.
+ *
+ * @author Viktoriia Sukhova
+ * @version 1.0
+ */
 public class Order {
     private int id;
     private int tableNumber;
-    private String status; // ("НОВИЙ", "ГОТУЄТЬСЯ", "ГОТОВИЙ", "ЗАКРИТИЙ")
+    private String status; // ("NEW", "PREPARING", "READY", "CLOSED")
     private LocalDateTime orderTime;
     private List<OrderItem> items;
 
+    /**
+     * Конструктор для створення нового замовлення.
+     *
+     * @param id ідентифікатор замовлення
+     * @param tableNumber номер столика
+     * @param status поточний статус замовлення
+     */
     public Order(int id, int tableNumber, String status) {
         this.id = id;
         this.tableNumber = tableNumber;
@@ -21,7 +33,12 @@ public class Order {
         this.items = new ArrayList<>();
     }
 
-    //Додає нову позицію до замовлення.
+    /**
+     * Додає нову позицію до замовлення з перевіркою на валідність.
+     * Позиція додається, якщо вона не null і її кількість більша за нуль.
+     *
+     * @param item позиція замовлення (OrderItem)
+     */
     public void addPosition(OrderItem item) {
         if (item != null && item.getQuantity() > 0) {
             items.add(item);
@@ -29,7 +46,12 @@ public class Order {
         }
     }
 
-    //Обчислює загальну вартість замовлення за допомогою циклу for та арифметичних операторів.
+    /**
+     * Обчислює загальну вартість замовлення за допомогою циклу for
+     * та арифметичних операторів шляхом підсумовування вартості всіх позицій.
+     *
+     * @return загальна вартість замовлення
+     */
     public double calculateTotal() {
         double total = 0.0;
         for (int i = 0; i < items.size(); i++) {
@@ -39,7 +61,9 @@ public class Order {
         return total;
     }
 
-    //Виводить опис статусу замовлення за допомогою конструкції switch.
+    /**
+     * Виводить опис статусу замовлення за допомогою конструкції switch.
+     */
     public void printOrderStatusDescription() {
         switch (status) {
             case "NEW":
@@ -57,17 +81,24 @@ public class Order {
         }
     }
 
-
-    //Гетери та сетери.
+    // Гетери та сетери.
+    /** @return ідентифікатор замовлення */
     public int getId() { return id; }
+    /** @param id новий ідентифікатор */
     public void setId(int id) { this.id = id; }
 
+    /** @return номер столика */
     public int getTableNumber() { return tableNumber; }
+    /** @param tableNumber новий номер столика */
     public void setTableNumber(int tableNumber) { this.tableNumber = tableNumber; }
 
+    /** @return статус замовлення */
     public String getStatus() { return status; }
+    /** @param status новий статус */
     public void setStatus(String status) { this.status = status; }
 
+    /** @return час створення замовлення */
     public LocalDateTime getOrderTime() { return orderTime; }
+    /** @return список позицій у замовленні */
     public List<OrderItem> getItems() { return items; }
 }

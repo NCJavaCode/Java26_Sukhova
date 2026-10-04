@@ -1,13 +1,25 @@
 package ua.edu.op.nkpk.java.model;
 
-//Клас Employee описує працівника кафе.
-
+/**
+ * Клас Employee описує працівника кафе.
+ *
+ * @author Viktoriia Sukhova
+ * @version 1.0
+ */
 public class Employee {
     private int id;
     private String name;
     private String role;
     private double salary;
 
+    /**
+     * Конструктор для створення нового працівника.
+     *
+     * @param id ідентифікатор працівника
+     * @param name ім'я працівника
+     * @param role посада працівника
+     * @param salary заробітна плата
+     */
     public Employee(int id, String name, String role, double salary) {
         this.id = id;
         this.name = name;
@@ -15,7 +27,11 @@ public class Employee {
         this.salary = salary;
     }
 
-    //Змінює заробітну плату з перевіркою за допомогою if/else та операторів порівняння.
+    /**
+     * Змінює заробітну плату з перевіркою за допомогою if/else та операторів порівняння.
+     *
+     * @param percent відсоток підвищення заробітної плати
+     */
     public void updateSalary(double percent) {
         if (percent > 0) {
             salary += salary * (percent / 100.0);
@@ -25,22 +41,31 @@ public class Employee {
         }
     }
 
-    //Симулює процес прийняття замовлення працівником.
+    /**
+     * Симулює процес прийняття замовлення працівником.
+     */
     public void takeOrder() {
         System.out.println("Працівник " + name + " (" + role + ") прийняв замовлення.");
     }
 
-
-    //Гетери та сетери.
+    // Гетери та сетери.
+    /** @return ідентифікатор працівника */
     public int getId() { return id; }
+    /** @param id новий ідентифікатор */
     public void setId(int id) { this.id = id; }
 
+    /** @return ім'я працівника */
     public String getName() { return name; }
+    /** @param name нове ім'я */
     public void setName(String name) { this.name = name; }
 
+    /** @return посада працівника */
     public String getRole() { return role; }
+    /** @param role нова посада */
     public void setRole(String role) { this.role = role; }
 
+    /** @return заробітна плата */
     public double getSalary() { return salary; }
+    /** @param salary нова заробітна плата */
     public void setSalary(double salary) { this.salary = salary; }
 }
