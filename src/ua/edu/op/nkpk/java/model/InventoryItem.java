@@ -2,6 +2,8 @@ package ua.edu.op.nkpk.java.model;
 
 import java.time.LocalDate;
 
+//Клас описує складську одиницю (інгредієнт або товар).
+
 public class InventoryItem {
     private int id;
     private String name;
@@ -17,11 +19,23 @@ public class InventoryItem {
         this.expirationDate = expirationDate;
     }
 
+    //Перевіряє, чи термін придатності минув.
     public boolean isExpired() {
         return LocalDate.now().isAfter(expirationDate);
     }
 
+    //Симулює процес витрати інгредієнта за допомогою циклу while.
+    public void consumeStock(double amountPerServing, int servingsCount) {
+        int currentServing = 0;
+        while (currentServing < servingsCount && quantity >= amountPerServing) {
+            quantity -= amountPerServing;
+            currentServing++;
+        }
+        System.out.printf("Витрачено інгредієнт: %s. Залишок: %.1f %s%n", name, quantity, unit);
+    }
 
+    
+    //Гетери та сетери.
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

@@ -1,5 +1,6 @@
 package ua.edu.op.nkpk.java.model;
 
+//Клас описує позицію в меню кафе.
 public class MenuItem {
     private int id;
     private String name;
@@ -13,12 +14,18 @@ public class MenuItem {
         this.category = category;
     }
 
+    //Змінює ціну страви з перевіркою на валідність через if/else.
     public void updatePrice(double newPrice) {
-        this.price = newPrice;
-        System.out.println("Ціна страви " + name + " оновлена до " + newPrice);
+        if (newPrice > 0) {
+            this.price = newPrice;
+            System.out.println("Ціну страви " + name + " успішно оновлено.");
+        } else {
+            System.out.println("Помилка: ціна не може бути від'ємною або нульовою!");
+        }
     }
 
 
+    //Гетери та сетери.
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

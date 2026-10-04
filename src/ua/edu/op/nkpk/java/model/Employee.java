@@ -1,5 +1,7 @@
 package ua.edu.op.nkpk.java.model;
 
+//Клас Employee описує працівника кафе.
+
 public class Employee {
     private int id;
     private String name;
@@ -13,15 +15,23 @@ public class Employee {
         this.salary = salary;
     }
 
+    //Змінює заробітну плату з перевіркою за допомогою if/else та операторів порівняння.
+    public void updateSalary(double percent) {
+        if (percent > 0) {
+            salary += salary * (percent / 100.0);
+            System.out.println("Зарплату працівника " + name + " оновлено. Нова зарплата: " + salary);
+        } else {
+            System.out.println("Помилка: відсоток підвищення має бути більшим за 0!");
+        }
+    }
+
+    //Симулює процес прийняття замовлення працівником.
     public void takeOrder() {
-        System.out.println("Робітник " + name + " прийняв замовлення.");
-    }
-
-    public void updateStatus() {
-        System.out.println("Статус оновлено робітником: " + name);
+        System.out.println("Працівник " + name + " (" + role + ") прийняв замовлення.");
     }
 
 
+    //Гетери та сетери.
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
