@@ -7,7 +7,7 @@ package ua.edu.op.nkpk.java.model;
  * @author Viktoriia Sukhova
  * @version 1.0
  */
-public class OrderItem {
+public class OrderItem implements Cloneable {
     private int id;
     private int quantity;
     private MenuItem menuItem;
@@ -23,6 +23,34 @@ public class OrderItem {
         this.id = id;
         this.quantity = quantity;
         this.menuItem = menuItem;
+    }
+
+    /**
+     * Конструктор копіювання для створення глибокої копії позиції замовлення.
+     *
+     * @param other інший об'єкт OrderItem, з якого копіюється стан
+     */
+    public OrderItem(OrderItem other) {
+        this(
+                other != null ? other.id : 0,
+                other != null ? other.quantity : 0,
+                (other != null && other.menuItem != null) ? new MenuItem(other.menuItem) : null
+        );
+    }
+
+    /**
+     * Виконує глибоке клонування позиції замовлення разом із вкладеним об'єктом MenuItem.
+     *
+     * @return глибока копія об'єкта OrderItem
+     * @throws CloneNotSupportedException якщо клонування не підтримується
+     */
+    @Override
+    public OrderItem clone() throws CloneNotSupportedException {
+        OrderItem cloned = (OrderItem) super.clone();
+        if (this.menuItem != null) {
+            cloned.menuItem = this.menuItem.clone();
+        }
+        return cloned;
     }
 
     /**
