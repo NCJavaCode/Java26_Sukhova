@@ -1,5 +1,7 @@
 package ua.edu.op.nkpk.java.model;
 
+import java.util.Objects;
+
 /**
  * Клас описує позицію в меню кафе.
  *
@@ -61,4 +63,27 @@ public class MenuItem {
     public String getCategory() { return category; }
     /** @param category нова категорія */
     public void setCategory(String category) { this.category = category; }
+
+    /**
+     * Порівнює поточний елемент меню з іншим об'єктом за ідентифікатором,
+     * ціною, назвою та категорією.
+     *
+     * @param o об'єкт для порівняння
+     * @return true, якщо об'єкти ідентичні, інакше false
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MenuItem menuItem = (MenuItem) o;
+        return id == menuItem.id &&
+                Double.compare(menuItem.price, price) == 0 &&
+                Objects.equals(name, menuItem.name) &&
+                Objects.equals(category, menuItem.category);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price, category);
+    }
 }

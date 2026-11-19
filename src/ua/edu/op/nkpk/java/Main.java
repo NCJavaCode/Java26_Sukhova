@@ -14,35 +14,14 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
 
-        // Створення страви в меню
-        MenuItem coffee = new MenuItem(1, "Капучино", 65.0, "Напої");
-        MenuItem cheesecake = new MenuItem(2, "Чізкейк", 95.0, "Десерти");
+        MenuItem menuItem = new MenuItem(1, "Pie", 50.0, "Dessert");
+        MenuItem menuItem2 = new MenuItem(1, "Pie", 50.0, "Dessert");
+        MenuItem menuItem3 = new MenuItem(1, "Pie", 65.0, "Dessert");
 
-        // Створення позиції замовлення
-        OrderItem item1 = new OrderItem(1, 2, coffee);     // 2 капучино
-        OrderItem item2 = new OrderItem(2, 1, cheesecake); // 1 чізкейк
-
-        // Створення замовлення для столика №13
-        Order order = new Order(31, 13, "NEW");
-
-        // Додавання позиції через метод з перевірками
-        order.addPosition(item1);
-        order.addPosition(item2);
-
-        // Перевірка роботи підрахунку суми
-        double totalSum = order.calculateTotal();
-        System.out.println("Загальна сума замовлення: " + totalSum + " грн");
-
-        // Перевірка роботи статусу
-        OrderService service = new OrderService();
-        service.createNewOrder(order);
-        service.updateOrderStatus(order, "PREPARING");
-        service.updateOrderStatus(order, "READY");
-
-        // Перевірка роботи процесу використання продуктів на складі
-        LocalDate expiryDate = LocalDate.now().plusDays(5);
-        InventoryItem milk = new InventoryItem(1, "Молоко", 2.0, "л", expiryDate);
-        service.checkInventoryExpiration(milk);
-        milk.consumeStock(0.3, 3); // Використання інгредієнта на 3 порції
+        System.out.println("Порівняння menuItem та menuItem2: " + menuItem.equals(menuItem2));
+        System.out.println("Порівняння menuItem та menuItem3: " + menuItem.equals(menuItem3));
+        System.out.println("Хеш-код 1: " + menuItem.hashCode());
+        System.out.println("Хеш-код 2: " + menuItem2.hashCode());
+        System.out.println("Хеш-код 3: " + menuItem3.hashCode());
     }
 }
