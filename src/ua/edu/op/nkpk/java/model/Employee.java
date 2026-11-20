@@ -40,6 +40,25 @@ public class Employee {
             System.out.println("Помилка: відсоток підвищення має бути більшим за 0!");
         }
     }
+    /**
+     * Перевантажений метод зміни заробітної плати: дозволяє підвищити її
+     * або у відсотках, або на фіксовану суму.
+     *
+     * @param amount значення відсотка або фіксованої суми
+     * @param isFixedAmount true — додати фіксовану суму, false — підвищити на відсоток
+     */
+    public void updateSalary(double amount, boolean isFixedAmount) {
+        if (isFixedAmount) {
+            if (amount > 0) {
+                salary += amount;
+                System.out.println("Зарплату працівника " + name + " збільшено на " + amount + ". Нова зарплата: " + salary);
+            } else {
+                System.out.println("Помилка: сума надбавки має бути більшою за 0!");
+            }
+        } else {
+            updateSalary(amount);
+        }
+    }
 
     /**
      * Симулює процес прийняття замовлення працівником.
