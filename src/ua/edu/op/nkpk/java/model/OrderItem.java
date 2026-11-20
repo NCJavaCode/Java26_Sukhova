@@ -81,8 +81,14 @@ public class OrderItem implements Cloneable {
 
     /** @return кількість порцій */
     public int getQuantity() { return quantity; }
-    /** @param quantity нова кількість порцій */
-    public void setQuantity(int quantity) { this.quantity = quantity; }
+    /** @param quantity нова кількість порцій (не може бути від'ємною) */
+    public void setQuantity(int quantity) {
+        if (quantity >= 0) {
+            this.quantity = quantity;
+        } else {
+            System.err.println("Помилка: кількість порцій не може бути від'ємною.");
+        }
+    }
 
     /** @return об'єкт страви з меню */
     public MenuItem getMenuItem() { return menuItem; }
