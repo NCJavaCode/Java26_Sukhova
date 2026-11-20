@@ -6,11 +6,12 @@ package ua.edu.op.nkpk.java.model;
  * @author Viktoriia Sukhova
  * @version 1.0
  */
-public class Employee {
+public class Employee implements Nameable, Describable {
     private int id;
     private String name;
     private String role;
     private double salary;
+    private String className;
 
     /**
      * Конструктор для створення нового працівника.
@@ -25,6 +26,7 @@ public class Employee {
         this.name = name;
         this.role = role;
         this.salary = salary;
+        this.className = "Employee";
     }
 
     /**
@@ -40,6 +42,7 @@ public class Employee {
             System.out.println("Помилка: відсоток підвищення має бути більшим за 0!");
         }
     }
+
     /**
      * Перевантажений метод зміни заробітної плати: дозволяє підвищити її
      * або у відсотках, або на фіксовану суму.
@@ -67,6 +70,16 @@ public class Employee {
         System.out.println("Працівник " + name + " (" + role + ") прийняв замовлення.");
     }
 
+    /**
+     * Повертає короткий опис працівника.
+     *
+     * @return рядок з інформацією про працівника
+     */
+    @Override
+    public String getShortInfo() {
+        return "Працівник: " + name + ", посада: " + role + ", зарплата: " + salary;
+    }
+
     // Гетери та сетери.
     /** @return ідентифікатор працівника */
     public int getId() { return id; }
@@ -87,4 +100,11 @@ public class Employee {
     public double getSalary() { return salary; }
     /** @param salary нова заробітна плата */
     public void setSalary(double salary) { this.salary = salary; }
+
+    /** @param name назва класу */
+    @Override
+    public void setClassName(String name) { this.className = name; }
+    /** @return назва класу */
+    @Override
+    public String getClassName() { return className; }
 }

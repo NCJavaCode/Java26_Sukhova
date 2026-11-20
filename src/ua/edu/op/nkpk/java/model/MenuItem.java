@@ -8,11 +8,12 @@ import java.util.Objects;
  * @author Viktoriia Sukhova
  * @version 1.0
  */
-public class MenuItem implements Cloneable {
+public class MenuItem implements Cloneable, Nameable, Describable {
     private int id;
     private String name;
     private double price;
     private String category;
+    private String className;
 
     /**
      * Конструктор для створення елемента меню.
@@ -27,6 +28,7 @@ public class MenuItem implements Cloneable {
         this.name = name;
         this.price = price;
         this.category = category;
+        this.className = "MenuItem";
     }
 
     /**
@@ -66,6 +68,16 @@ public class MenuItem implements Cloneable {
         } else {
             System.out.println("Помилка: ціна не може бути від'ємною або нульовою!");
         }
+    }
+
+    /**
+     * Повертає короткий опис елемента меню.
+     *
+     * @return рядок з інформацією про страву
+     */
+    @Override
+    public String getShortInfo() {
+        return "Страва: " + name + " (" + category + "), ціна: " + price + " грн";
     }
 
     /**
@@ -116,4 +128,11 @@ public class MenuItem implements Cloneable {
     public String getCategory() { return category; }
     /** @param category нова категорія */
     public void setCategory(String category) { this.category = category; }
+
+    /** @param name назва класу */
+    @Override
+    public void setClassName(String name) { this.className = name; }
+    /** @return назва класу */
+    @Override
+    public String getClassName() { return className; }
 }
